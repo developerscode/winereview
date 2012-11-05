@@ -14,7 +14,7 @@ function getdata() {
      
      param1 = query_string[1];
      param2 = query_string[2];
-     alert(query_string[0]);
+     //alert(query_string[0]);
     //alert(param2);
     subpar1 = param1.split("&");
     //alert(subpar1[0]);
