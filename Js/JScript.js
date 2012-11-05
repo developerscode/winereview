@@ -22,29 +22,29 @@ function getdata() {
     //alert(subpar2[0]);
 }
 function SortByRating(x, y) {
-    alert("reviewstars");
+    //alert("reviewstars");
     return ((x.reviewstars == y.reviewstars) ? 0 : ((x.reviewstars > y.reviewstars) ? 1 : -1));
 }
 function SortByPrice(x, y) { 
-        alert("Price");
+        //alert("Price");
         return x.price - y.price;
 }
 function SortByName(x, y) {     
-        alert("Name");
+        //alert("Name");
         return ((x.winename == y.winename) ? 0 : ((x.winename > y.winename) ? 1 : -1));
  
 }
 // When the user views the Track Info page
 $('#BindWines').live('pageshow', function() {
     //alert("Enter");
-jQuery.getJSON("js/winecurrent.json", function(data) {
+jQuery.getJSON("Js/winecurrent.json", function(data) {
 
 
 $('#completeWines li').remove();
 
 wines = data.rows;
 if (query_string[0] == "Rating") {
-    alert("reviewstars");
+   // alert("reviewstars");
     wines.sort(SortByRating);  
 }
 else if (query_string[0] == "Price") {
@@ -52,7 +52,7 @@ alert("Price");
 wines.sort(SortByPrice);     
 }
 else {
-    alert("name");
+   // alert("name");
     wines.sort(SortByName); 
 }
   
@@ -84,7 +84,7 @@ $('#completeWines li').live('vclick', function() {
     var tparam1 = query_string3[0];
     //alert(tparam1);
     $.mobile.changePage("#WineDetailsPage", { transition: "slideup" });
-     jQuery.getJSON("js/winecurrent.json", function(data) {
+     jQuery.getJSON("Js/winecurrent.json", function(data) {
 
      $('#ClearWinesDetail li').remove();
         wines = data.rows;
@@ -93,7 +93,7 @@ $('#completeWines li').live('vclick', function() {
        
             
         if (wine.winename == tparam1) {
-        alert("enter2");
+       // alert("enter2");
         $('#ClearWinesDetail').append('<li><span style="color:#336699">Wine Name</span> : ' + wine.winename + '<Br />' +
                 '<span style="color:#336699">Price</span> : ' + wine.price + '<Br />' +
                 '<span style="color:#336699">Region </span>: ' + wine.region + '<Br />' +
