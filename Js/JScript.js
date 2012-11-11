@@ -10,24 +10,26 @@ function getdata() {
     var currentNav = $('a.ui-btn-active').text();
     // Do fancy things with it
     //alert(currentNav);
-    query_string = currentNav.split("$");
+    query_string = currentNav.split("<");
      
      param1 = query_string[1];
      param2 = query_string[2];
-     //alert(query_string[0]);
-    //alert(param2);
-    subpar1 = param1.split("&");
-    //alert(subpar1[0]);
-    subpar2 = param2.split("&");
-    //alert(subpar2[0]);
+    // alert(query_string[0]);
+    //alert(param1);
+    //subpar1 = param1.split("&");
+    subpar1 = param1.charAt(2) + param1.charAt(3)
+    //alert(subpar1);
+    subpar2 = param2.charAt(2) + param2.charAt(3) + param2.charAt(4)
+    //subpar2 = param2.split("&");
+   // alert(subpar2);
 }
 function SortByRating(x, y) {
     //alert("reviewstars");
     return ((x.reviewstars == y.reviewstars) ? 0 : ((x.reviewstars > y.reviewstars) ? 1 : -1));
 }
 function SortByPrice(x, y) { 
-        //alert("Price");
-        return x.price - y.price;
+        //alert("Price-1");
+        return y.price - x.price;
 }
 function SortByName(x, y) {     
         //alert("Name");
@@ -48,7 +50,7 @@ if (query_string[0] == "Rating") {
     wines.sort(SortByRating);  
 }
 else if (query_string[0] == "Price") {
-alert("Price");
+//alert("Price -2");
 wines.sort(SortByPrice);     
 }
 else {
@@ -58,7 +60,7 @@ else {
   
         $.each(wines, function(index, wine) {
         
-        if (wine.price == subpar1[0] || wine.reviewstars == subpar2[0])
+        if (wine.price <= subpar1 || wine.reviewstars <= subpar2)
            
         $('#completeWines').append('<li><span style="font-size:Medium; font-family:Verdana; color:Black;">Wine Name:' + wine.winename + '.</span><Br />' +
                         '<span style="font-size:small; font-family:Verdana; color:Black;">Price :' + wine.price + '</span><Br />' +
@@ -75,6 +77,7 @@ $('#completeWines li').live('vclick', function() {
     //alert("Works"); // id of clicked li by directly accessing DOMElement property
     selectedwine = $(this).text();
     //alert(selectedwine);
+    
 
     var query_string2 = selectedwine.split(":");
     var sparam1 = query_string2[1];
