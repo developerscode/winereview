@@ -10,7 +10,7 @@ function getdata() {
     var currentNav = $('a.ui-btn-active').text();
     // Do fancy things with it
     //alert(currentNav);
-    query_string = currentNav.split("<");
+    query_string = currentNav.split(">");
      
      param1 = query_string[1];
      param2 = query_string[2];
@@ -21,32 +21,32 @@ function getdata() {
     //alert(subpar1);
     subpar2 = param2.charAt(2) + param2.charAt(3) + param2.charAt(4)
     //subpar2 = param2.split("&");
-   // alert(subpar2);
+     //alert(subpar2);
 }
 function SortByRating(x, y) {
-    //alert("reviewstars");
+  //  alert("reviewstars");
     return ((x.reviewstars == y.reviewstars) ? 0 : ((x.reviewstars > y.reviewstars) ? 1 : -1));
 }
 function SortByPrice(x, y) { 
-        //alert("Price-1");
+      //  alert("Price-1");
         return y.price - x.price;
 }
 function SortByName(x, y) {     
-        //alert("Name");
+       // alert("Name");
         return ((x.winename == y.winename) ? 0 : ((x.winename > y.winename) ? 1 : -1));
  
 }
 // When the user views the Track Info page
 $('#BindWines').live('pageshow', function() {
     //alert("Enter");
-jQuery.getJSON("Js/winecurrent.json", function(data) {
+jQuery.getJSON("Js/newwinecurrent.json", function(data) {
 
 
 $('#completeWines li').remove();
 
 wines = data.rows;
 if (query_string[0] == "Rating") {
-   // alert("reviewstars");
+    //alert("reviewstars");
     wines.sort(SortByRating);  
 }
 else if (query_string[0] == "Price") {
@@ -54,16 +54,14 @@ else if (query_string[0] == "Price") {
 wines.sort(SortByPrice);     
 }
 else {
-   // alert("name");
+    //alert("name");
     wines.sort(SortByName); 
-}
-  
-        $.each(wines, function(index, wine) {
-        
-        if (wine.price <= subpar1 || wine.reviewstars <= subpar2)
-           
-        $('#completeWines').append('<li><span style="font-size:Medium; font-family:Verdana; color:Black;">Wine Name:' + wine.winename + '.</span><Br />' +
-                        '<span style="font-size:small; font-family:Verdana; color:Black;">Price :' + wine.price + '</span><Br />' +
+}  
+        $.each(wines, function(index, wine) {        
+        if (wine.price >= subpar1 || wine.reviewstars >= subpar2)
+
+            $('#completeWines').append('<li><span style="font-size:Medium; font-family:Verdana; color:Black;">ID:' + wine.uniqueid + '.</span><Br />' +
+                '<span style="font-size:small; font-family:Verdana; color:Black;">Price :' + wine.price + '</span><Br />' +
                 '<span style="font-size:small; font-family:Verdana; color:Black;">Review Stars :' + wine.reviewstars + '</span><Br />' +
                 '<span style="font-size:small; font-family:Verdana; color:Black;">Review Text:' + wine.reviewtext + '</span><Br />' +
                 '</li>');        
@@ -77,7 +75,6 @@ $('#completeWines li').live('vclick', function() {
     //alert("Works"); // id of clicked li by directly accessing DOMElement property
     selectedwine = $(this).text();
     //alert(selectedwine);
-    
 
     var query_string2 = selectedwine.split(":");
     var sparam1 = query_string2[1];
@@ -87,17 +84,18 @@ $('#completeWines li').live('vclick', function() {
     var tparam1 = query_string3[0];
     //alert(tparam1);
     $.mobile.changePage("#WineDetailsPage", { transition: "slideup" });
-     jQuery.getJSON("Js/winecurrent.json", function(data) {
+    jQuery.getJSON("Js/newwinecurrent.json", function(data) {
 
-     $('#ClearWinesDetail li').remove();
+        $('#ClearWinesDetail li').remove();
         wines = data.rows;
         $.each(wines, function(index, wine) {
-        //alert(wine.winename+","+tparam1);
-       
-            
-        if (wine.winename == tparam1) {
-       // alert("enter2");
-        $('#ClearWinesDetail').append('<li><span style="color:#336699">Wine Name</span> : ' + wine.winename + '<Br />' +
+            //alert(wine.winename + "," + tparam1);
+
+
+            if (wine.uniqueid == tparam1) {
+                // alert("enter2");
+                $('#ClearWinesDetail').append('<li><span style="color:#336699">ID</span> : ' + wine.uniqueid + '<Br />' +
+                '<span style="color:#336699">Type</span> : ' + wine.type + '<Br />' +
                 '<span style="color:#336699">Price</span> : ' + wine.price + '<Br />' +
                 '<span style="color:#336699">Region </span>: ' + wine.region + '<Br />' +
                 '<span style="color:#336699">Review Stars</span> : ' + wine.reviewstars + '<Br />' +
@@ -111,10 +109,12 @@ $('#completeWines li').live('vclick', function() {
                 '<span style="color:#336699">Vintages </span>: ' + wine.vintages + '<Br />' +
                 '<span style="color:#336699">Alcohol</span> : ' + wine.alcohol + '<Br />' +
                 '<span style="color:#336699">Vintage </span>: ' + wine.vintage + '<Br />' +
+                '<span style="color:#336699">Year </span>: ' + wine.year + '<Br />' +
                 '<span style="color:#336699">Lcbonum </span>: ' + wine.lcbonum + '<Br />' +
+                '<span style="color:#336699">Wine Name</span> : ' + wine.name + '<Br />' +
                 '</li>');
                 //save in var
-                tracking_data='<span style="color:#336699">Wine Name</span>: ' + wine.winename +'<Br />'+
+                tracking_data = '<span style="color:#336699">ID</span>: ' + wine.uniqueid + '<Br />' +
                 '<span style="color:#336699">Price </span>: ' + wine.price + '<Br />' +
                 '<span style="color:#336699">Region </span>: ' + wine.region + '<Br />' +
                 '<span style="color:#336699">Review Stars </span>: ' + wine.reviewstars + '<Br />' +
@@ -128,13 +128,15 @@ $('#completeWines li').live('vclick', function() {
                 '<span style="color:#336699">Vintages </span>: ' + wine.vintages + '<Br />' +
                 '<span style="color:#336699">Alcohol</span> : ' + wine.alcohol + '<Br />' +
                 '<span style="color:#336699">Vintage</span> : ' + wine.vintage + '<Br />' +
-                '<span style="color:#336699">Lcbonum</span> : ' + wine.lcbonum + '<Br />';
-               //$('#track_id').text(wine.winename);
-               track_id=wine.winename;
-               //alert(track_id);
-               //alert(tracking_data);
-               
-            }                       
+                '<span style="color:#336699">Year </span>: ' + wine.year + '<Br />' +
+                '<span style="color:#336699">Lcbonum</span> : ' + wine.lcbonum + '<Br />' +
+                 '<span style="color:#336699">Wine Name</span> : ' + wine.name + '<Br />';
+                //$('#track_id').text(wine.winename);
+                track_id = wine.uniqueid;
+                //alert(track_id);
+                //alert(tracking_data);
+
+            }
             //tracking_data=WinesDetails.val();           
 
         });

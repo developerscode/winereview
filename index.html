@@ -43,10 +43,10 @@
             <div data-role="navbar" data-theme="b">
             Cost
                 <ul>                    
-                    <li><a href="#" class="ui-btn-active">< $10</a></li>
-                    <li><a href="#">< $15</a></li>                    
-                    <li><a href="#">< $20</a></li>   
-                    <li><a href="#">< $25</a></li> 
+                    <li><a href="#" class="ui-btn-active">> $10</a></li>
+                    <li><a href="#">> $15</a></li>                    
+                    <li><a href="#">> $20</a></li>   
+                    <li><a href="#">> $25</a></li> 
                 </ul>
             </div>
             </li>
@@ -54,27 +54,24 @@
             <div data-role="navbar" data-theme="b">
             Ratings
                 <ul>                    
-                    <li><a href="#" class="ui-btn-active">< $3.5</a></li>
-                    <li><a href="#">< $4.0</a></li>                    
-                    <li><a href="#">< $4.5</a></li>   
-                    <li><a href="#">< $5.0</a></li> 
+                    <li><a href="#" class="ui-btn-active">> $3.5</a></li>
+                    <li><a href="#">> $4.0</a></li>                    
+                    <li><a href="#">> $4.5</a></li>   
+                    <li><a href="#">> $5.0</a></li> 
                 </ul>
             </div>
             </li>
          </ul> 
         </div>
         <!-- /navbar -->
-      	<label><a href="#" id="start_link" data-role="button" data-theme="c"><span id="timer_button">Varietals</span></a></label>  
-      
+      	<label><a href="#" id="start_link" data-role="button" data-theme="c"><span id="timer_button">Varietals</span></a></label> 
     </div>
-    
-    
     <!--Second Page-->
     <div data-role="page" id="BindWines" data-theme="c" data-inset='false'>
     <div data-role="header" data-theme="b">
             <a href="index.html" data-theme="a" class="ui-btn-left" rel="external">Back</a>
             <h1 style="font-size: 14px;">Quick Pick</h1>
-            <!--<a href="#" data-theme="a" class="ui-btn-right" rel="external">Filter</a>-->
+            <a href="#watchlistpage" data-theme="a" class="ui-btn-right" rel="external">Watch List</a>
         </div>
         <div data-role="content">            
             <h3>
@@ -91,12 +88,13 @@
     <div data-role="page" id="WineDetailsPage">
         <div data-role="header" data-theme="b" data-position="inline">
             <a href="#BindWines" data-theme="a" class="ui-btn-left" rel="external">Back</a>
-            <h1 style="font-size: 14px;">
-                Details</h1>
+            <h1 style="font-size: 14px;">Details</h1>
                 <a href="#watchlistpage" data-theme="a" class="ui-btn-right" rel="external">Watch List</a>
         </div>
         <div data-role="content">
             <form method="get" name="ad">
+            <a href="#" type="button" data-theme="a" onclick="addtolist(); return false" id="btnaddwatch"
+                class="ui-btn-right" rel="external">Add to watch List</a>
             <h3>
                 Wine Details :
             </h3>
@@ -105,8 +103,7 @@
             </ul>
             <div id="track_id">
             </div>
-            <a href="#" type="button" data-theme="a" onclick="addtolist(); return false" id="btnaddwatch"
-                class="ui-btn-right" rel="external">Add to watch List</a>
+            
             </form>
             <div data-role="footer" data-theme="b" data-position="fixed" data-iconpos="top">
                 <h4>
@@ -114,12 +111,11 @@
             </div>
             <!---footer-->
         </div>
-        </div>
-     
+        </div>     
      <!--fourth Page-->
      <div data-role="page" id="watchlistpage">
         <div data-role="header" data-theme="b" data-position="inline">
-            <a href="index.html" data-theme="a" onclick="back(); return false" id="back" class="ui-btn-left"
+            <a href="#BindWines" data-theme="a" onclick="back(); return false" id="back" class="ui-btn-left"
                 rel="external">Back</a>
             <h1 style="font-size: 14px;">
                 Watch List</h1>
