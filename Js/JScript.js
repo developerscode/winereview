@@ -18,14 +18,14 @@ function getdata() {
     //alert(param1);
     //subpar1 = param1.split("&");
     subpar1 = param1.charAt(2) + param1.charAt(3)
-    //alert(subpar1);
-    subpar2 = param2.charAt(2) + param2.charAt(3) + param2.charAt(4)
+   // alert(subpar1);
+    subpar2 = param2.charAt(1) + param2.charAt(2) + param2.charAt(3)
     //subpar2 = param2.split("&");
-     //alert(subpar2);
+   //  alert(subpar2);
 }
 function SortByRating(x, y) {
   //  alert("reviewstars");
-    return ((x.reviewstars == y.reviewstars) ? 0 : ((x.reviewstars > y.reviewstars) ? 1 : -1));
+    return ((y.reviewstars == x.reviewstars) ? 0 : ((y.reviewstars > x.reviewstars) ? 1 : -1));
 }
 function SortByPrice(x, y) { 
       //  alert("Price-1");
@@ -58,7 +58,7 @@ else {
     wines.sort(SortByName); 
 }  
         $.each(wines, function(index, wine) {        
-        if (wine.price >= subpar1 || wine.reviewstars >= subpar2)
+        if (wine.price >= subpar1 && wine.reviewstars >= subpar2)
 
             $('#completeWines').append('<li><span style="font-size:Medium; font-family:Verdana; color:Black;">ID:' + wine.uniqueid + '.</span><Br />' +
                 '<span style="font-size:small; font-family:Verdana; color:Black;">Price :' + wine.price + '</span><Br />' +
